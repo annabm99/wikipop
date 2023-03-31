@@ -89,9 +89,9 @@ def result_page():
     links = session["links"]
     ref = session["ref"]
     process.make_graph(word, links)
-    Search_to_create = Search(word=word) # this will go to password_setter
-    db.session.add(Search_to_create)
-    db.session.commit()
+    #Search_to_create = Search(word=word) # this will go to password_setter
+    #db.session.add(Search_to_create)
+    #db.session.commit()
     return render_template("results.html", word = word, summary = summary, num = num, length = length, ref = ref, links = links)
 
 
