@@ -1,0 +1,221 @@
+<!--Inherit base template-->
+{% extends "base2.html" %}
+{% block title %}
+Home Page
+{% endblock %}
+
+{% block content %}
+       <!-- Masthead-->
+        <header class="masthead">
+            <div class="container">
+                <h1 class="section-heading text-uppercase">Welcome to WikiPop</h1>
+                <h6 class="section-subheading">an app to get informed about the popularity and links of Wikipedia entries</h6>
+                <a class="btn btn-primary btn-xl text-uppercase" style="margin: 20px;" href="{{ url_for('register_page') }}">Register</a>
+                <a class="btn btn-primary btn-xl text-uppercase" style="margin: 20px;" href="{{ url_for('login_page') }}">Login</a>
+                <a class="btn btn-primary btn-xl text-uppercase" style="margin: 20px;" href="{{ url_for('search_page') }}">Make a search</a>
+
+            </div>
+        </header>
+        <!-- Team-->
+
+        <section class="page-section bg-light" id="hwork">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase" style="color: black">My Homework</h2>
+                    <h3 class="section-subheading text-muted">If you click on any of the options, you will be redirected to a new page where the homework is posted.</h3>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="team-member" style="padding-top: 90px;">
+                                <a class="btn-social" href="">
+                                    <img class="mx-auto rounded-circle" src="{{url_for('static', filename='assets/img/hw/datmodel.png') }}" alt="..." />
+                                </a>
+                            <h4 style="color: darkgray">GWAS Data Model</h4>
+                            <p class="text-muted">See how a GWAS database would be organized.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="team-member" style="padding-top: 90px;">
+                                <a class="btn-social" href="">
+                                    <img class="mx-auto rounded-circle" src="{{url_for('static', filename='assets/img/hw/dna.png') }}" alt="..." />
+                                </a>
+                            <h4 style="color: darkgray">Clustal Omega App</h4>
+                            <p class="text-muted">Align multiple sequences.</p>
+                        </div>
+                    </div>
+                        <div class="col-lg-4">
+                            <div class="team-member" style="padding-top: 90px;">
+                                    <a class="btn-social" href="">
+                                        <img class="mx-auto rounded-circle" src="{{url_for('static', filename='assets/img/hw/pop.png') }}" alt="..." />
+                                    </a>
+                                <h4 style="color: darkgray">WikiPop App</h4>
+                                <p class="text-muted">See how popular any word is in Wikipedia.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="me">
+            <div class="container justify-content-center">
+                <br>
+                <h2 class="section-heading text-uppercase" style="display: inline-flex; background-color: black; color: lightgray">About Me</h2>
+                <p class="section-heading" style="display: inline-flex; background-color: black; color: lightgray">This website was created by Anna Basquet Muniente, student in the Bioinformatics for Health Sciences Master's Degree at UPF/UB, in Barcelona.</p>
+                <p class="section-heading" style="display: inline-flex; background-color: black; color: lightgray">My passions in life are music, evolution, and, most of all, sharing my time with other people.</p>
+                <br>
+            <h5 class="section-heading" style="display: inline-flex; background-color: black; color:lightgray">Thank you for visiting :)</h5>
+            </div>
+        </section>
+        <!-- Portfolio item 1 modal popup-->
+        <div class="portfolio-modal modal fade" id="sad" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2WgOjdCqAIvLpYOXwt8W4y?utm_source=generator&theme=0" width="100%" height="500" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="portfolio-modal modal fade" id="energy" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/3NGoLJ26bHKz5YxzMPcEhL?utm_source=generator&theme=0" width="100%" height="500" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="portfolio-modal modal fade" id="blin" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5eFuRWBrOzCYSGo3jy9Pp7?utm_source=generator&theme=0" width="100%" height="500" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="portfolio-modal modal fade" id="leaf" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1Q1P4147z44IwfV6RzTpMo?utm_source=generator&theme=0" width="100%" height="500" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="portfolio-modal modal fade" id="home" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/1MuXu5A1b2M6TqjS4rlkUW?utm_source=generator&theme=0" width="100%" height="500" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="portfolio-modal modal fade" id="dance" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/0h9VE2Qlnb8bTO0yEsDG1s?utm_source=generator&theme=0" width="100%" height="500" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>                            </div>
+                            </div>
+                        </div>      
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="portfolio-modal modal fade" id="mdlr" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2LBtm1Y4PgssTOBp6lJ7iG?utm_source=generator&theme=0" width="100%" height="500" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="portfolio-modal modal fade" id="heart" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/4H6I0OOTIxFzru428m7EyV?utm_source=generator&theme=0" width="100%" height="500" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="portfolio-modal modal fade" id="tb" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/60yMuwBaj9LFE7MJvbIRsX?utm_source=generator&theme=0" width="100%" height="500" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="portfolio-modal modal fade" id="jkl" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="close-modal" data-bs-dismiss="modal"><img src="assets/img/close-icon.svg" alt="Close modal" /></div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="modal-body">
+                                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/2LBtm1Y4PgssTOBp6lJ7iG?utm_source=generator&theme=0" width="100%" height="500" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{%endblock%}

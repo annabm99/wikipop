@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}
+Word search
+{% endblock %}
+
+
+{% block content %}
+
+    <!--Table hover: when you put the mouse on one row of the table it changes color-->
+    <!--Dark: if not present the table has white background-->
+    <table class="table table-hover table-dark">
+        <thead>                                 
+            <tr>
+                <!-- Column headers (bold) -->
+                <th scope="col">ID</th> <!-- First column: ID -->
+                <th scope="col">Name</th> <!--  column: Name -->
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Rows -->
+            <!--Jinja template uses brackets with % instead of double brackets to access a logical, you can write code similar to python code-->
+            {% for search in items %} <!--For each element of the list-->
+                <tr>
+                    <td>{{ search.id }}</td> <!--1st dict value will go to the 1sr col)-->
+                    <!--The $$$$ added at the end (outside jinja code) will be displayed as normal text after the dict item-->
+                    <td>{{ search.name }}</td> <!--2nd dict value will go the the 2nd col)-->
+                    <td>
+                        <!--2 additional buttons for each row (3rd and 4th column)-->
+                        <button class="btn btn-outline btn-info"> See results </button> <!--Button info: differnet colour than botton success-->
+                        <button class="btn btn-outline btn-success">See results</button>
+                    </td>
+                </tr>
+            {% endfor %} <!--Close the for loop-->
+        </tbody>
+    </table>
+
+{% endblock %}

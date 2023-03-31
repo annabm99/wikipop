@@ -1,0 +1,33 @@
+{%extends "base2.html"%} <!--calls base.html-->
+
+{% block title %}
+Search page
+{% endblock %}
+
+{%block content%}
+<h1 class = "section-heading text-uppercase" style="margin-top: 120px; color:black">New search</h1>
+<h6 class = "section-subheading" style = " margin-top: 20px; color: darkgrey;">Make a new search for a word or string of words you are interested in</h6>
+<body class="text-center">
+    <!--class container so the objects do not fill the whole screen-->
+    <div class = "container">
+        <!--method to post because users can provide information through this. Enctype allows file upload-->
+        <form method="POST" class="form-register" style="color:black" enctype="multipart/form-data" >
+            <!--Protect information from the form when it is being sent-->
+            {{ form.hidden_tag() }}
+            <!--Form header-->
+            <h2 class="h3 mb-3 font-weight-normal">
+                Please provide the words you wish to analyze
+            </h2>
+            <br>
+            <!--Fields of the form-->
+            {{ form.word.label() }}
+            <!--We can put HTML code inside the curly brackets (make dispay nicer)-->
+            <!--Place holder is what is written insde the input box before you write on it-->
+            {{ form.word(class="form-control", placeholder="Write the word or string of words you want to search") }}
+            </br>
+            <!--Submit button-->
+            {{ form.submit(class = "btn btn-lg btn-block btn-primary") }}
+        </form>
+    </div>
+</body>
+{%endblock%}

@@ -1,0 +1,27 @@
+{%extends "base2.html"%} <!--calls base.html-->
+
+{% block title %}
+Result for {{word}}
+{% endblock %}
+
+{%block content%}
+<div class="container" style="max-width: 1000px;">
+    <h1 class = "section-heading text-uppercase" style=" text-align: center; margin-top: 120px; margin-bottom: 40px; color:black">{{word}}</h1>
+    <div class="row text-center">
+        <div class="col-md-5" style="outline: solid; outline-color: #ffc800; margin-right: 20px;  margin: 0 auto; align-self: center; max-width: 600px;">
+            <h4 class="my-3" style="color: darkgray">Summary</h4>
+            <p class="text-muted" style="font-size: small;">{{summary}}</p>
+        </div>
+        <div class="col-md-5" style="outline: solid; outline-color: #ffc800; margin-left: 20px;  margin: 0 auto; align-self: center; max-width: 600px;">
+            <h4 class="my-3" style="color: darkgray">Relevance</h4>
+            <p class="text-muted" style="font-size: small;">{{summary}}</p>
+        </div>
+    </div>
+</div>
+
+<section class="page-section" style=" margin-top: 20px; background-color: black;">
+    <h4 class="my-3" style="color: darkgray">Interactions</h4>
+    <p>The maximum number of interactions shown here is 50. If your word has more than 50, you can refresh the page to see other interactions </p>
+    <iframe src="{{url_for('static', filename='graph.html') }}" style="height:100vh;width:100%" ></iframe>
+</section>
+{%endblock%}

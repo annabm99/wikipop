@@ -1,0 +1,33 @@
+<!--Inherit base template-->
+{% extends "base2.html" %}
+{% block title %}
+Login Page
+{% endblock %}
+
+{% block content %}
+<h1 class = "section-heading text-uppercase" style="margin-top: 120px; color:black">Login</h1>
+<h6 class = "section-subheading" style = " margin-top: 20px; color: darkgrey;"> Plese enter your credentials to access your personal WikiPop account</h6>
+<body class="text-center">
+    <div class="container">
+        <form method="POST" style="color: darkgray; margin: 0 auto; align-self: center; max-width: 600px;">
+            {{ form.hidden_tag() }}
+            <br>
+            {{ form.username.label() }}
+            {{ form.username(class="form-control", placeholder="User Name") }}
+
+            {{ form.password.label() }}
+            {{ form.password(class="form-control", placeholder="Password") }}
+
+            <br>
+
+            {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
+
+            <div class="checkbox mb-3">
+                <h6 style="margin-top: 30px; color:darkgray">Do not have an account?</h6>
+                <a class="btn btn-sm btn-secondary" href="{{ url_for('register_page') }}">Register</a>
+             </div>
+
+        </form>
+    </div>
+</body>
+{% endblock %}

@@ -1,0 +1,35 @@
+{%extends "base.html"%} <!--calls base.html-->
+
+{% block title %}
+Options for {{word}}
+{% endblock %}
+
+{%block content%}
+<body class="text-center">
+    <div class = "container", style="padding-top: 60px; padding-bottom: 60px;">
+        <h5 class="text-left">The word {{word}} has many entries in Wikipedia... please choose one of the following and enter the text again.</h5>
+        <ul class="list-unstyled card-columns" style="column-count:4">
+        {% for option in options %}
+            <li class="list-group-item">{{option}}</li>
+        {% endfor %}
+        </ul>
+        <form method="POST" class="form-register" style="color:black" enctype="multipart/form-data" >
+            <!--Protect information from the form when it is being sent-->
+            {{ form.hidden_tag() }}
+            <!--Form header-->
+            <h4 style = "padding-top: 30px;">
+                Please, re-enter the word you wish to search for:
+            </h4>
+            <br>
+            <!--Fields of the form-->
+            {{ form.word.label() }}
+            <!--We can put HTML code inside the curly brackets (make dispay nicer)-->
+            <!--Place holder is what is written insde the input box before you write on it-->
+            {{ form.word(class="form-control", placeholder="Write the word or string of words you want to search") }}
+            </br>
+            <!--Submit button-->
+            {{ form.submit(class = "btn btn-lg btn-block btn-primary") }}
+        </form>
+    </div>
+</body>
+{%endblock%}
