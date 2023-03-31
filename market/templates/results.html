@@ -5,23 +5,42 @@ Result for {{word}}
 {% endblock %}
 
 {%block content%}
-<div class="container" style="max-width: 1000px;">
-    <h1 class = "section-heading text-uppercase" style=" text-align: center; margin-top: 120px; margin-bottom: 40px; color:black">{{word}}</h1>
-    <div class="row text-center">
-        <div class="col-md-5" style="outline: solid; outline-color: #ffc800; margin-right: 20px;  margin: 0 auto; align-self: center; max-width: 600px;">
-            <h4 class="my-3" style="color: darkgray">Summary</h4>
-            <p class="text-muted" style="font-size: small;">{{summary}}</p>
-        </div>
-        <div class="col-md-5" style="outline: solid; outline-color: #ffc800; margin-left: 20px;  margin: 0 auto; align-self: center; max-width: 600px;">
-            <h4 class="my-3" style="color: darkgray">Relevance</h4>
-            <p class="text-muted" style="font-size: small;">{{summary}}</p>
+<section class="page-section" style="min-height: 100vh; background-color: whitesmoke;">
+    <div class="container" style="max-width: 1000px;">
+        <h1 class = "section-heading text-uppercase" style=" text-align: center; margin-top: 50px; color:black">{{word}}</h1>
+        <h4 style="color: darkgray; text-align: center; margin-bottom: 30px">scroll down to see a graph with the interactions for this word</h4>
+        <div class="row text-center">
+            <div class="col-md-5" style="margin-right: 20px;  margin: 0 auto; align-self: center; max-width: 600px;">
+                <h4 class="my-3" style="color: #6610f2">Summary</h4>
+                <p class="text-muted" style="font-size: small;">{{summary}}</p>
+            </div>
+            <div class="col-md-5" style="margin-left: 20px;  margin: 0 auto; align-self: center; max-width: 600px;">
+                <h4 class="my-3" style="color: #6610f2">Relevance</h4>
+                <div class="row text-center">
+                    <div class="col-md-4">
+                        <p class = "text-muted" style="font-size: small">Length of the article</p>
+                        <img src="{{url_for('static', filename='paper.png') }}" style="width:70px; padding-bottom: 20px;" alt="..." />
+                        <p style = "font-size: medium; color: #6610f2">{{ length }}</p>
+                    </div>
+                    <div class = "col-md-4">
+                        <p class="text-muted" style="font-size: small;">Interactions (links)</p>
+                        <img src="{{url_for('static', filename='net.png') }}" style="width:70px; padding-bottom: 20px" alt="..." />
+                        <p style = "font-size: medium; color: #6610f2">{{ num }}</p>
+                    </div>
+                    <div class = "col-md-4">
+                        <p class="text-muted" style="font-size: small;">References used to build the page</p>
+                        <img src="{{url_for('static', filename='cit.png') }}" style="width:70px; padding-bottom: 20px" alt="..." />
+                        <p style = "font-size: medium; color: #6610f2">{{ ref }}</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+</section>
 
-<section class="page-section" style=" margin-top: 20px; background-color: black;">
-    <h4 class="my-3" style="color: darkgray">Interactions</h4>
-    <p>The maximum number of interactions shown here is 50. If your word has more than 50, you can refresh the page to see other interactions </p>
-    <iframe src="{{url_for('static', filename='graph.html') }}" style="height:100vh;width:100%" ></iframe>
+<section class="page-section" style=" margin-top: 20px; background-color: black; min-height:100vh">
+    <h2 style="color: #ffc800; text-align: center;">Interactions</h2>
+    <p style="color: darkgray; text-align: center">The maximum number of interactions shown here is 50, you can zoom in or out, and move nodes to see them better. </p>
+    <iframe src="{{url_for('static', filename='graph.html') }}" style="height:100vh; width:100%; background-color: black;" ></iframe>
 </section>
 {%endblock%}

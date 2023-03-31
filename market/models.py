@@ -34,12 +34,7 @@ class User(db.Model, UserMixin): # User object inherits from Model
 # SQLAlchemy class. The classes we create will later be converted to database tables (modules with items)
 class Search(db.Model): # Class item imports from the db.Model class
     # PRIMARY KEY (mandatory)
-    id = db.Column(db.Integer(), primary_key=True)
-    name = db.Column(db.String(length=250), nullable=False) # Create a column, parameters
-                                                # String = string type character
-                                                # Length = cannot be longer than 30 characters
-                                                # Nullable = does it allow null fields?
-                                                # Unique = make each item have a unique name (avoids confusion)
+    word = db.Column(db.String(length=250), nullable=False, primary_key=True) # Create a column, parameters
     #price = db.Column(db.Integer(), nullable=False)
     #barcode = db.Column(db.String(length=12), nullable=False, unique=True)
     #description = db.Column(db.String(length=1024), nullable=False, unique=True)

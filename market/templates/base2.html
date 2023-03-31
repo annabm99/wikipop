@@ -34,37 +34,59 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="{{ url_for('home_page') }}#register">Register</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ url_for('home_page') }}#login">Login</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ url_for('home_page') }}#search">Make a search</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ url_for('home_page') }}#about">About Us</a></li>
+                          <!--Display different searchbar for authenticated users-->
+                          {% if current_user.is_authenticated %}
+                          <ul class="navbar-nav">
+                            <li class="nav-item">
+                              <a class="nav-link" href="{{ url_for('logout_page') }}">Logout</a>
+                          </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('history_page') }}">Search history</a>
+                            </li>
+                          </ul>
+                          <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('search_page') }}">New Search</a>
+                          </li>
+                          {% else %}
+                          <ul class="navbar-nav">
+                              <li class="nav-item">
+                                  <a class="nav-link" href="{{ url_for('login_page') }}">Login</a>
+                              </li>
+                              <li class="nav-item">
+                                  <a class="nav-link" href="{{ url_for('register_page') }}">Register</a>
+                              </li>
+                          </ul>
+                          {% endif %}
                 </ul>
             </div>
         </div>
     </nav>
-    <!--Flash error messages to users. Categories is for better display. -->
-    {% with messages = get_flashed_messages(with_categories=true) %}
-    <!--check if there are messages-->
-      {% if messages %}
-    <!--go through all messages (could be more than 1)-->
-        {% for category, message in messages %}
-          <!--Module output with category danger (there is a bootstrap class named danger)-->
-          <div class="alert alert-{{ category }}">
-            <!--Button to close alert-->
-            <button type="button" class="m1-2 mb-1 close" data-dismiss="alert" aria-label="Close">
-              <!--Close button (x): the aria things are for the button's behaviour-->
-              <span aria-hidden="true">&times;</span>
-            </button>
-            {{ message }}
-          </div>
-        {% endfor %}
-      {% endif %}
-    {% endwith %}
-    <!--inside block content we will write all the body content of each page-->
-      {% block content %}
+    
+<!--Flash error messages to users. Categories is for better display. -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+<!--check if there are messages-->
+  {% if messages %}
+<!--go through all messages (could be more than 1)-->
+    {% for category, message in messages %}
+      <!--Module output with category danger (there is a bootstrap class named danger)-->
+      <div class="alert alert-{{ category }}">
+        <!--Button to close alert-->
+        <button type="button" class="m1-2 mb-1 close" data-dismiss="alert" aria-label="Close">
+          <!--Close button (x): the aria things are for the button's behaviour-->
+          <span aria-hidden="true">&times;</span>
+        </button>
+        {{ message }}
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
 
-      {% endblock %}
-        <!-- Bootstrap core JS-->
+<!--inside block content we will write all the body content of each page-->
+  {% block content %}
+
+  {% endblock %}
+  <!-- Future Content here -->
+  <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="{{url_for('static', filename='js/scripts.js')}}"></script>

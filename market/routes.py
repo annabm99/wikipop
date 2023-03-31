@@ -26,10 +26,10 @@ def input_page():
     # Whatever is put into name will be sent to the html jinja, and it will be displayed on the webpage
 
 
-#@app.route("/search_history")
-#def history_page():
-#    search = Search.query.all() # Refers to the Item table from the database, which will be displayed on the page
- #   return render_template("search.html", items=search)
+@app.route("/search_history")
+def history_page():
+    search = Search.query.all() # Refers to the Item table from the database, which will be displayed on the page
+    return render_template("search_history.html", items=search)
 
 @app.route("/new_search", methods=["GET", "POST"])
 def search_page():
@@ -38,17 +38,20 @@ def search_page():
         word = form.word.data
         session["word"] = word
         try:
-            summary, links = process.summary(word)
+            summary, num, length, ref, links = process.summary(word)
             session["summary"] = summary
+            session["num"] = num
+            session["length"] = length
+            session["ref"] = ref
             session["links"] = links
-            return redirect (url_for("result_page", word=word, summary=summary, links=links))
+            return redirect (url_for("result_page", word=word, summary=summary, num=num, length=length, ref=ref, links=links))
         except wikipedia.exceptions.DisambiguationError as e:
             options = (e.options)
             session["options"] = options
             return redirect (url_for("options_page" , word=word, options=options))
-        #session["summary"] = summary
-        #session["links"] = links
-        #return redirect (url_for("result_page", word=word, summary=summary, links=links))
+        except wikipedia.exceptions.PageError:
+            flash(f"The word you typed in does not have an entry in Wikipedia, please try with a different word")
+            return redirect (url_for("search_page"))
     if form.errors != {}: # if form.errors is not empty, check for errors
         for err_msg in form.errors.values(): # go through error messages
             # Instead of printing to the terminal, flash prints to the user interface so users can be aware of errors
@@ -64,10 +67,13 @@ def options_page():
         word = form.word.data
         session["word"] = word
         try:
-            summary, links = process.summary(word)
+            summary, num, length, ref, links = process.summary(word)
             session["summary"] = summary
+            session["length"] = length
+            session["num"] = num
+            session["ref"] = ref
             session["links"] = links
-            return redirect (url_for("result_page", word=word, summary=summary, links=links))
+            return redirect (url_for("result_page", word=word, summary=summary, num=num, length=length, ref=ref, links=links))
         except wikipedia.exceptions.DisambiguationError as e:
             options = (e.options)
             session["options"] = options
@@ -77,11 +83,16 @@ def options_page():
 @app.route("/results",  methods=["GET", "POST"])
 def result_page():
     word = session["word"]
-    print(word)
     summary = session["summary"]
+    num = session["num"]
+    length=session["length"]
     links = session["links"]
+    ref = session["ref"]
     process.make_graph(word, links)
-    return render_template("results.html", word = word, summary = summary, links = links)
+    Search_to_create = Search(word=word) # this will go to password_setter
+    db.session.add(Search_to_create)
+    db.session.commit()
+    return render_template("results.html", word = word, summary = summary, num = num, length = length, ref = ref, links = links)
 
 
 # REGISTER PAGE

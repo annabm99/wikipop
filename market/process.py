@@ -75,22 +75,21 @@ def get_links(word):
 def summary(word):
     summary = wikipedia.summary(word , sentences = 4, auto_suggest = False)
     links = wikipedia.page(word, auto_suggest = False).links
-    print(type(links))
-    return (summary, links)
+    num = len(links)
+    length = len(wikipedia.page(word, auto_suggest=False).content)
+    print(wikipedia.page(word, auto_suggest=False))
+    ref = len(wikipedia.page(word, auto_suggest=False).references)
+    if num > 50:
+        links = random.sample(links,50) # take a sample, otherwise it cannot be sent to the next page
+    return (summary, num, length, ref, links)
 
 def make_graph(word, links):
-    if len(links) > 50:
-        links = random.sample(links,50)
-    print(links)
-    print(type(links))
     g = nx.Graph()
     g.add_node(word)
     for link in links:
         g.add_node(link)
         g.add_edge(word, link)
-    get_colors = lambda n: ["#%06x" % random.randint(0, 0xFFFFFF) for _ in range(n)]
-    colors = get_colors(50)
-    nx.draw(g, with_labels = True, bbox=dict(facecolor="white"), node_size=50, font_size=5, edge_color=colors)
+    nx.draw(g, with_labels = True, bbox=dict(facecolor="white"), node_size=50, font_size=5)
     plt.axis("off")
     axis = plt.gca()
     axis.set_xlim([1.2*x for x in axis.get_xlim()])
@@ -98,6 +97,8 @@ def make_graph(word, links):
     plt.tight_layout()
     path = os.getcwd()
     nx.spring_layout(g, k=0.8, iterations=20)
-    nt = Network(height='600px', width='100%',  bgcolor="black", font_color="white")
+    nt = Network(height='100vh', width='100%',  bgcolor="black", font_color="white")
     nt.from_nx(g)
-    nt.show("market/static/graph.html")
+    for node in nt.nodes:
+        node["color"] = "#ffc800"
+    nt.generate_html("market/static/graph.html")
