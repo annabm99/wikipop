@@ -21,7 +21,12 @@ sudo dnf install python3.7
 
 Installation can be verified with `python3.7 --version`
 
-### Installing requirements
+### Command line installation and requirements
+```bash
+git clone https://github.com/annabm99/wikipop.git
+cd wikipop
+```
+
 Using Python's `-m venv` we can install the packages required by:
 ```bash
 # Create a virtual environment:
